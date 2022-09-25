@@ -12,6 +12,11 @@ const serverDefs = [
     name: "Asset Server",
     handler: require("./servers/assetServer"),
   },
+  {
+    port: 9003,
+    name: "Chat Server",
+    handler: require("./servers/chatServer"),
+  },
 ];
 
 serverDefs.forEach((serverDef) => {
