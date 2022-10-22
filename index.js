@@ -27,6 +27,12 @@ const serverDefs = [
     type: "udp",
     handler: require("./servers/dbServer"),
   },
+  {
+    port: 9005,
+    name: "Proxy Server",
+    type: "txp",
+    handler: require("./servers/proxyServer"),
+  },
 ];
 
 const printServerInfo = (serverDef, server) => {
