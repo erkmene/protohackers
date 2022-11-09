@@ -30,8 +30,14 @@ const serverDefs = [
   {
     port: 9005,
     name: "Proxy Server",
-    type: "txp",
+    type: "tcp",
     handler: require("./servers/proxyServer"),
+  },
+  {
+    port: 9006,
+    name: "Traffic Server",
+    type: "tcp",
+    handler: require("./servers/trafficServer"),
   },
 ];
 
@@ -51,6 +57,9 @@ serverDefs.forEach((serverDef) => {
   } else {
     server = net.createServer();
     server.on("connection", serverDef.handler);
+    server.on("error", (err) => {
+      console.error(err);
+    });
     server.listen(serverDef.port, () => printServerInfo(serverDef, server));
   }
   serverDef.server = server;
